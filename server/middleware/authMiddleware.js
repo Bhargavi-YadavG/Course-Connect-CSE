@@ -19,7 +19,7 @@ const protect = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
     req.user = await User.findById(decoded.id);
-
+    
     if (!req.user) {
         return res.status(401).json({
             message: "No user found with this id"
